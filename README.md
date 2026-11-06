@@ -3,7 +3,7 @@
 Interface web légère permettant de visualiser la disponibilité, le trafic et la latence d'endpoints HTTP en temps réel. Le projet a été développé en JavaScript natif (Vanilla ES6+) afin de travailler directement sur les APIs du navigateur, la manipulation du DOM et la gestion d'état côté client sans dépendre d'un framework externe.
 
 ## Démo en ligne
-[Lien vers le déploiement](https://metricflow-dashboard.vercel.app)
+[Tester l'application en direct](https://metricflow-dashboard-zeta.vercel.app/)
 
 ## Choix techniques et architecture
 - **JavaScript ES6+ :** Utilisation de l'API Fetch asynchrone (`async/await`), gestion des collections de données, et manipulation du DOM sans framework.
