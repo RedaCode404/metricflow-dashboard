@@ -1,13 +1,88 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>metricflow-dashboard</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetricFlow — Surveillance API</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+
+<body>
+  <div id="app">
+    <!-- En-tête -->
+    <header class="header">
+      <div class="brand">
+        <span class="status-indicator"></span>
+        <h1>MetricFlow</h1>
+      </div>
+      <div class="actions">
+        <button id="btn-refresh" class="btn">Actualiser</button>
+        <button id="btn-theme" class="btn" aria-label="Basculer le thème">Thème</button>
+      </div>
+    </header>
+
+    <!-- Cartes KPI -->
+    <section class="kpi-grid">
+      <article class="card">
+        <span class="card-label">Disponibilité</span>
+        <p id="kpi-uptime" class="card-value">--%</p>
+        <span class="card-footer">30 derniers jours</span>
+      </article>
+      <article class="card">
+        <span class="card-label">Latence moyenne</span>
+        <p id="kpi-latency" class="card-value">-- ms</p>
+        <span id="latency-status" class="card-footer">Calcul...</span>
+      </article>
+      <article class="card">
+        <span class="card-label">Total requêtes</span>
+        <p id="kpi-total" class="card-value">--</p>
+        <span class="card-footer">Session active</span>
+      </article>
+    </section>
+
+    <!-- Graphique -->
+    <section class="card chart-container">
+      <div class="section-header">
+        <h2>Historique de latence</h2>
+        <div class="filter-box">
+          <label for="filter-status">Statut :</label>
+          <select id="filter-status">
+            <option value="ALL">Tous les codes</option>
+            <option value="200">200 OK</option>
+            <option value="ERROR">4xx / 5xx Erreurs</option>
+          </select>
+        </div>
+      </div>
+      <div class="canvas-wrapper">
+        <canvas id="latencyChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Tableau des logs -->
+    <section class="card table-container">
+      <div class="section-header">
+        <h2>Journal des requêtes</h2>
+        <span id="stream-badge" class="badge">En direct</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Heure</th>
+            <th>Méthode</th>
+            <th>Endpoint</th>
+            <th>Statut</th>
+            <th>Latence</th>
+          </tr>
+        </thead>
+        <tbody id="logs-body">
+          <!-- Injecté via JavaScript -->
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+
 </html>
